@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+	 http://code.alibabatech.com/schema/dubbo	http://code.alibabatech.com/schema/dubbo/dubbo.xsd"
+       default-lazy-init="true">
+
+    <dubbo:application name="justlhy-utils" />
+
+    <dubbo:consumer check="false"/>
+
+    <dubbo:protocol name="dubbo" port="32449" threadpool="cached" threads="500"/>
+
+    <dubbo:registry  protocol="zookeeper" address="zookeeper-sit.mid.io:2181" id="zookeeper"/>
+
+    <dubbo:service interface="com.example.justlhyutils.service.time.TimeCalculatorService" ref="timeCalculatorService"
+                   version="1.0" registry="zookeeper" owner="lhy" />
+
+</beans>
