@@ -11,10 +11,10 @@ import java.util.concurrent.CountDownLatch;
  */
 @ImportResource("application-dubbo.xml")
 @SpringBootApplication
-public class JustlhyUtilsApplication {
+public class Application {
 
     public static void main(String[] args) throws InterruptedException {
-        SpringApplication.run(JustlhyUtilsApplication.class, args);
+        SpringApplication.run(Application.class, args);
         new CountDownLatch(1).await();
     }
 
