@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JUST-LHY</title>
+    <!-- CSS -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+    .carousel-container {
+      width: 100vw;
+      height: 400px; /* 轮播图固定高度 */
+      overflow: hidden;
+    }
+
+    .carousel-inner {
+      display: flex;
+      width: 300%;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    .carousel-item {
+      flex: 0 0 33.33%;
+      height: 100%;
+    }
+
+    .carousel-item img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<!-- 顶部导航栏 -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">justLhy</a>
+  <!-- 导航链接 -->
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a class="nav-link" target="_blank" href="https://www.baidu.com">百度</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" target="_blank" href="https://chat.openai.com/">chat-gpt</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">github</a>
+    </li>
+  </ul>
+</nav>
+
+<!-- 轮播图 -->
+
+<div id="carouselExample" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExample" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExample" data-slide-to="1"></li>
+    <li data-target="#carouselExample" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-container">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="../../static/img/l1.png" class="d-block w-100" alt="轮播图1">
+      </div>
+      <div class="carousel-item">
+        <img src="../../static/img/l2.png" class="d-block w-100" alt="轮播图2">
+      </div>
+      <div class="carousel-item">
+        <img src="../../static/img/l3.png" class="d-block w-100" alt="轮播图3">
+      </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">上一个</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExample" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">下一个</span>
+  </a>
+</div>
+
+<!-- 表单 -->
+<div class="container mt-5">
+  <form>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="allPath">接口全路径:</label>
+        <input type="text" class="form-control" id="allPath" name="input1">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="methodName">方法名称:</label>
+        <input type="text" class="form-control" id="methodName" name="input2">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="group">组名:</label>
+        <input type="text" class="form-control" id="group" name="input3">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="version">版本:</label>
+        <input type="text" class="form-control" id="version" name="input4">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="ipAddress">指定ip:</label>
+        <input type="text" class="form-control" id="ipAddress" name="input5">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="parameters">参数:</label>
+        <input type="text" class="form-control" id="parameters" name="input6">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12">
+        <label for="parametersValue">参数值:</label>
+        <textarea class="form-control" id="parametersValue" name="textarea1"></textarea>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-12">
+          <button type="submit" class="btn btn-outline-primary">提交</button>
+          <button type="reset" class="btn btn-outline-secondary">重置</button>
+      </div>
+    </div>
+      <div class="form-row">
+          <div class="form-group col-md-12">
+              <label for="result">结果:</label>
+              <textarea class="form-control" id="result" name="result"></textarea>
+          </div>
+      </div>
+  </form>
+</div>
+
+
+<!-- jQuery and JavaScript Bundle with Popper -->
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.slim.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/4.6.2/js/bootstrap.bundle.min.js" integrity="sha384-7ymO4nGrkm372HoSbq1OY2DP4pEZnMiA+E0F3zPr+JQQtQ82gQ1HPY3QIVtztVua" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        $('form').submit(function(event) {
+            event.preventDefault(); // 阻止表单默认的提交行为
+            var myTextBox = document.getElementById("result");
+            // 获取表单数据
+            var formData = {
+                allPath: $('#allPath').val(),
+                methodName: $('#methodName').val(),
+                group: $('#group').val(),
+                version: $('#version').val(),
+                ipAddress: $('#ipAddress').val(),
+                parameters: $('#parameters').val(),
+                parametersValue: $('#parametersValue').val()
+            };
+            console.log(formData)
+            // 发送Ajax请求
+            $.ajax({
+                type: 'POST', // 或者 'GET'，取决于您的服务器端设置
+                url: 'http://localhost:8080/rpc/general', // 替换为您的服务器端处理URL
+                contentType: 'application/json',
+                data: JSON.stringify(formData),
+                success: function(response) {
+                    // 处理成功响应
+                    console.log(response);
+                    myTextBox.value = response;
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    // 处理错误响应
+                    console.error(textStatus, errorThrown);
+                }
+            });
+        });
+    });
+    document.getElementById("parametersValue").addEventListener("keydown", function(e) {
+        if (e.keyCode === 13) { // 检测按下的是否是回车键
+            this.style.height = "auto"; // 先将输入框高度设置为自动，以便重新计算高度
+            this.style.height = (this.scrollHeight + 2) + "px"; // 设置输入框的高度为内容的高度加上一些额外空间
+        }
+    });
+
+    document.getElementById("parametersValue").addEventListener("input", function() {
+        this.style.height = "auto";
+        this.style.height = (this.scrollHeight + 2) + "px";
+    });
+
+    document.getElementById("result").addEventListener("input", function() {
+        this.style.height = "auto";
+        this.style.height = (this.scrollHeight + 2) + "px";
+    });
+</script>
+</body>
+</html>
