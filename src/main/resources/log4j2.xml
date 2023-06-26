@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <properties>
+        <!-- 文件输出格式 -->
+        <property name="PATTERN">%d [%traceId] %-5p [%t] %c{1}:%L - %m%n</property>
+        <property name="FILE_PATH">/Users/liuhuayang/Documents/project/self/justlhy-utils/log4j2-logs/</property>
+    </properties>
+    <appenders>
+        <Console name="CONSOLE" target="system_out">
+            <PatternLayout pattern="${PATTERN}"/>
+        </Console>
+        <!-- error -->
+        <RollingFile name="errorRollingFile"
+                     fileName="${FILE_PATH}/exception.log"
+                     filePattern="${FILE_PATH}/exception_%d{yyyy-MM-dd}-%i.log">
+            <SizeBasedTriggeringPolicy size="10KB"/>
+            <!-- DefaultRolloverStrategy 属性如不设置，则默认为最多同一文件夹下7个文件，这里设置了10 -->
+            <DefaultRolloverStrategy max="20"/>
+            <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${PATTERN}"/>
+        </RollingFile>
+        <!-- INFO/WARN/DEBUG/ERROR⽇志输出 -->
+        <RollingFile name="runRollingFile"
+                     fileName="${FILE_PATH}/run.log"
+                     filePattern="${FILE_PATH}/run_%d{yyyy-MM-dd}-%i.log">
+            <SizeBasedTriggeringPolicy size="10KB"/>
+            <!-- DefaultRolloverStrategy 属性如不设置，则默认为最多同⼀⽂件夹下 7个⽂件，这⾥设
+           置了 10 -->
+            <DefaultRolloverStrategy max="20"/>
+            <Filters>
+                <ThresholdFilter level="FATAL" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+            <PatternLayout pattern="${PATTERN}"/>
+        </RollingFile>
+        <!-- ⽇志异步配置,可不开启异步 -->
+        <Async name="infoAsync" blocking="false">
+            <AppenderRef ref="runRollingFile"/>
+        </Async>
+        <Async name="errorAsync" blocking="false">
+            <AppenderRef ref="errorRollingFile"/>
+        </Async>
+    </appenders>
+    <loggers>
+        <root level="INFO">
+            <AppenderRef ref="CONSOLE"/>
+            <!-- ⽇志正常配置
+            <appenderref ref="runRollingFile" />
+            <appenderref ref="errorRollingFile" />
+            -->
+            <!-- ⽇志异步配置,可不开启异步 -->
+            <AppenderRef ref="infoAsync"/>
+            <AppenderRef ref="errorAsync"/>
+        </root>
+        <Logger name="alarmDigest" level="info" additivity="false">
+            <appenderref ref="CONSOLE" />
+            <AppenderRef ref="infoAsync"/>
+        </Logger>
+    </loggers>
+</configuration>
