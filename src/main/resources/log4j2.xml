@@ -13,7 +13,7 @@
         <RollingFile name="errorRollingFile"
                      fileName="${FILE_PATH}/exception.log"
                      filePattern="${FILE_PATH}/exception_%d{yyyy-MM-dd}-%i.log">
-            <SizeBasedTriggeringPolicy size="10KB"/>
+            <SizeBasedTriggeringPolicy size="1MB"/>
             <!-- DefaultRolloverStrategy 属性如不设置，则默认为最多同一文件夹下7个文件，这里设置了10 -->
             <DefaultRolloverStrategy max="20"/>
             <ThresholdFilter level="error" onMatch="ACCEPT" onMismatch="DENY"/>
@@ -23,7 +23,7 @@
         <RollingFile name="runRollingFile"
                      fileName="${FILE_PATH}/run.log"
                      filePattern="${FILE_PATH}/run_%d{yyyy-MM-dd}-%i.log">
-            <SizeBasedTriggeringPolicy size="10KB"/>
+            <SizeBasedTriggeringPolicy size="1MB"/>
             <!-- DefaultRolloverStrategy 属性如不设置，则默认为最多同⼀⽂件夹下 7个⽂件，这⾥设
            置了 10 -->
             <DefaultRolloverStrategy max="20"/>

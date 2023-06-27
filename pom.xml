@@ -108,6 +108,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>org.jeecgframework</groupId>
+            <artifactId>autopoi-web</artifactId>
+            <version>1.4.3</version>
+        </dependency>
     </dependencies>
 
     <build>
