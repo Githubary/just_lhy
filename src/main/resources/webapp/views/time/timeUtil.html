@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>时间计算工具</title>
+</head>
+<body>
+<h1>时间计算工具</h1>
+
+<h2>计算时间差</h2>
+<label>时间1：</label>
+<input type="datetime-local" id="datetime1">
+<br>
+<label>时间2：</label>
+<input type="datetime-local" id="datetime2">
+<br>
+<button onclick="calculateDifference()">计算时间差</button>
+<br>
+<p id="differenceResult"></p>
+
+<h2>计算时间戳</h2>
+<label>时间：</label>
+<input type="datetime-local" id="datetime">
+<br>
+<button onclick="calculateTimestamp()">计算时间戳</button>
+<br>
+<p id="timestampResult"></p>
+
+<script>
+    function calculateDifference() {
+        var datetime1 = new Date(document.getElementById("datetime1").value);
+        var datetime2 = new Date(document.getElementById("datetime2").value);
+
+        var differenceInSeconds = Math.abs((datetime2 - datetime1) / 1000);
+        var differenceInMinutes = Math.abs(differenceInSeconds / 60);
+        var differenceInHours = Math.abs(differenceInMinutes / 60);
+        var differenceInDays = Math.abs(differenceInHours / 24);
+
+        var differenceResult = "时间差：\n" +
+            "秒：" + differenceInSeconds + "\n" +
+            "分钟：" + differenceInMinutes + "\n" +
+            "小时：" + differenceInHours + "\n" +
+            "天：" + differenceInDays;
+
+        document.getElementById("differenceResult").innerText = differenceResult;
+    }
+
+    function calculateTimestamp() {
+        var datetime = new Date(document.getElementById("datetime").value);
+
+        var timestamp = datetime.getTime() / 1000;
+
+        var timestampResult = "时间戳：" + timestamp;
+
+        document.getElementById("timestampResult").innerText = timestampResult;
+    }
+</script>
+</body>
+</html>

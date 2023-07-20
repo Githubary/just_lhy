@@ -8,7 +8,6 @@ package com.example.justlhyutils.service.time;
  */
 public interface TimeCalculatorService {
 
-
     String  getTimeCalculatorFactor();
 
 }
