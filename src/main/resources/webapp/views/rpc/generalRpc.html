@@ -163,7 +163,7 @@
             // 发送Ajax请求
             $.ajax({
                 type: 'POST', // 或者 'GET'，取决于您的服务器端设置
-                url: 'http://localhost:8080/rpc/general', // 替换为您的服务器端处理URL
+                url: 'http://localhost:8000/rpc/general', // 替换为您的服务器端处理URL
                 contentType: 'application/json',
                 data: JSON.stringify(formData),
                 success: function(response) {

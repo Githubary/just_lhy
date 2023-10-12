@@ -16,4 +16,7 @@
     <dubbo:service interface="com.example.justlhyutils.service.time.TimeCalculatorService" ref="timeCalculatorService"
                    version="1.0" registry="zookeeper" owner="lhy" />
 
+    <dubbo:service interface="com.example.justlhyutils.service.random.RandomService" ref="randomService"
+                   version="1.0" registry="zookeeper" owner="lhy" />
+
 </beans>

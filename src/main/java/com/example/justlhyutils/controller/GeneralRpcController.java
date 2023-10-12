@@ -5,6 +5,7 @@ import com.example.justlhyutils.model.GeneralRpcRequest;
 import com.example.justlhyutils.service.rpc.GenericRpcService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.micrometer.core.instrument.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.rpc.service.GenericService;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,6 +34,7 @@ public class GeneralRpcController {
 
     @RequestMapping("/general")
     public String generalRpc(@RequestBody GeneralRpcRequest request) throws JsonProcessingException {
+        log.info("泛化调用入参:{}",JSON.toJSONString(request));
         try {
             String group = request.getGroup();
             String interfaceClass = request.getAllPath();
@@ -40,10 +42,16 @@ public class GeneralRpcController {
             GenericService genericService = genericRpcService.buildGenericService(interfaceClass,group,version);
             String methodName = request.getMethodName();
             String parameters = request.getParameters();
-            String[] parametersSplit = parameters.split(",");
+            String[] parametersSplit = new String[]{};
+            if (StringUtils.isNotBlank(parameters)) {
+                parametersSplit = parameters.split(",");
+            }
             String parametersValue = request.getParametersValue();
-            ObjectMapper objectMapper = new ObjectMapper();
-            Object[] parametersValueList = objectMapper.readValue(parametersValue, Object[].class);
+            Object[] parametersValueList = new Object[]{};
+            if(StringUtils.isNotBlank(parametersValue)){
+                ObjectMapper objectMapper = new ObjectMapper();
+                parametersValueList = objectMapper.readValue(parametersValue, Object[].class);
+            }
             log.info("即将进行泛化调用:methodName:{},parametersSplit:{},value:{}", methodName, JSON.toJSONString(parametersSplit),
                     JSON.toJSONString(parametersValueList));
             Object o = genericService.$invoke(methodName, parametersSplit, parametersValueList);
@@ -53,6 +61,7 @@ public class GeneralRpcController {
             StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);
             e.printStackTrace(pw);
+            log.error("泛化调用出错:{}",sw);
             return sw.toString();
         }
     }

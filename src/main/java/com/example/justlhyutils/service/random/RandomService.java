@@ -1,6 +1,5 @@
 package com.example.justlhyutils.service.random;
 
-import java.math.BigDecimal;
 
 /**
  * description:
@@ -14,7 +13,13 @@ public interface RandomService {
      * 0到1的随机小数
      * @return
      */
-    BigDecimal random01();
+    double random01();
+
+    /**
+     * 安全生成
+     * @return
+     */
+    double safeRandom01();
 
     /**
      * 1到某个数的随机整数

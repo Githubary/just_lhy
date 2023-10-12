@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * description:
+ * description:http请求-提交json数据
  *
  * @author liuhuayang
  * date: 2023/8/29 14:25
