@@ -17,7 +17,7 @@ public class ThreadPoolExecutorConfiguration {
 
     @Bean("asyncExecutor")
     public ThreadPoolTaskExecutor asyncExecutor(){
-        ThreadPoolTaskExecutor threadPoolTaskExecutor = createPool(2,4,120,5000);
+        ThreadPoolTaskExecutor threadPoolTaskExecutor = createPool(4,4,120,5000);
         threadPoolTaskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         threadPoolTaskExecutor.setWaitForTasksToCompleteOnShutdown(true);
         return threadPoolTaskExecutor;
